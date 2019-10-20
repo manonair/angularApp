@@ -46,9 +46,11 @@ node {
 
 
     stage("DEPLOY") {
-      sh './deploy.sh'
-      //sh 'docker run -p 8000:80 manonair/angularapp'
-        // echo "Depolying to Server - "
-      
+      //sh './deploy.sh'
+      docker.image('manonair/angularapp').withRun('-p 8000:80') {
+            /* do things */
+        }
+       
     }
+  
 }
