@@ -39,18 +39,18 @@ node {
 		*/
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') {
             app.push("${env.BUILD_NUMBER}")
-            //app.push("latest")
+            app.push("latest")
             } 
             echo "Pushing Docker Build to DockerHub"
     }
 
 
-    stage("DEPLOY") {
+    /*stage("DEPLOY") {
       //sh './deploy.sh'
       docker.image('manonair/angularapp').withRun('-p 8000:80') {
-            /* do things */
+            // do things 
         }
        
-    }
+    }*/
   
 }
