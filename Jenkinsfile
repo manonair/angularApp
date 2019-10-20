@@ -56,7 +56,8 @@ node {
     }*/
   
   stage("Deploy") {
-    sh "docker rm angularapp && \
+    sh "docker stop angularapp && \
+    docker rm angularapp && \
     docker pull manonair/angularapp:latest && \
         docker run -d --name=angularapp -p 8000:80 manonair/angularapp:latest"
   }
