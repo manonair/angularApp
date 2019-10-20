@@ -17,6 +17,7 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 # health check Config
-HEALTHCHECK --interval=5s \
-            --timeout=5s \
-            CMD curl -f http://127.0.0.1:80|| exit 1
+
+#HEALTHCHECK --interval=5s \
+ #           --timeout=5s \
+ #           CMD curl -f http://127.0.0.1:80|| exit 1
