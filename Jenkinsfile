@@ -45,16 +45,23 @@ node {
     }
 
 
-    stage("DEPLOY") {
+  /*  stage("DEPLOY") {
       //sh './deploy.sh'
-      /*docker.image('manonair/angularapp').withRun('-p 8000:80') {
-            // do things 
-        }*/
+      
        
       
       def container = app.run('-p 8000')
     println app.id + " container is running at host port, " + container.port(80)
                     
-    }
+    }*/
+  
+  stage("Deploy") {
+    sh "ssh root@localhost \"docker stop ast_0 && \
+        docker rm ast_0 && \
+        docker pull docker pull manonair/angularapp:latest && \
+        docker run -d --name=ast_0 -p 8000:80 manonair/angularapp:latest\"
+  }
+
+  
   
 }
