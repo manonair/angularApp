@@ -46,9 +46,9 @@ node {
 
 
     stage("DEPLOY") {
-      steps {
-        sh './deploy.sh'       
+      
+        sh 'docker run -p 8000:80 manonair/angularapp'
         // echo "Depolying to Server - "
-      }
+      
     }
 }
