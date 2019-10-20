@@ -45,9 +45,10 @@ node {
     }
 
 
-    /*stage("DEPLOY & ACTIVATE") {
+    stage("DEPLOY") {
       steps {
-        echo "Depolying to Server - "
+        sh './deploy.sh'       
+        // echo "Depolying to Server - "
       }
-    }*/
+    }
 }
