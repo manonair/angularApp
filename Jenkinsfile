@@ -27,12 +27,7 @@ node {
     }
 
     stage('Test image') {
-        
-        withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
-            sh 'ng test --progress=false --watch false'
-          }
-          junit '**/test-results.xml'
-
+       
         app.inside {
             echo "Tests passed"
         }
@@ -44,15 +39,25 @@ node {
 		*/
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') {
             app.push("${env.BUILD_NUMBER}")
-            //app.push("latest")
+            app.push("latest")
             } 
             echo "Pushing Docker Build to DockerHub"
     }
 
+  /*stage("Deploy") {
+    sh "docker stop angularapp && \
+    docker rm angularapp && \
+    docker pull manonair/angularapp:latest && \
+        docker run -d --name=angularapp -p 8000:80 manonair/angularapp"
+  }*/
 
-    stage("DEPLOY & ACTIVATE") {
-      steps {
-        echo 'Depolying to Server - '
-      }
-    }
+  stage("Deploy") {
+    //sh "docker run --rm -d -p 8000:80 manonair/angularapp"    
+    sh "docker stop angularapp && \
+    docker rm angularapp && \
+    docker pull manonair/angularapp && \
+        docker run -d --name=angularapp -p 8000:80 manonair/angularapp"
+  }
+  
+  
 }
