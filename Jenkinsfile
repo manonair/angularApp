@@ -44,24 +44,20 @@ node {
             echo "Pushing Docker Build to DockerHub"
     }
 
-
-  /*  stage("DEPLOY") {
-      //sh './deploy.sh'
-      
-       
-      
-      def container = app.run('-p 8000')
-    println app.id + " container is running at host port, " + container.port(80)
-                    
-    }*/
-  
-  stage("Deploy") {
+  /*stage("Deploy") {
     sh "docker stop angularapp && \
     docker rm angularapp && \
     docker pull manonair/angularapp:latest && \
         docker run -d --name=angularapp -p 8000:80 manonair/angularapp"
-  }
+  }*/
 
+  stage("Deploy") {
+    sh "docker run --rm -d -p 8000:80 manonair/angularapp"    
+    /*"docker stop angularapp && \
+    docker rm angularapp && \
+    docker pull manonair/angularapp && \
+        docker run -d --name=angularapp -p 8000:80 manonair/angularapp"*/
+  }
   
   
 }
