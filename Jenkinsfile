@@ -47,7 +47,7 @@ node {
 
     stage("DEPLOY & ACTIVATE") {
       steps {
-        echo 'Depolying to Server - '
+        echo "Depolying to Server - "
       }
     }
 }
