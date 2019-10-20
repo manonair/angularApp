@@ -57,7 +57,7 @@ node {
   
   stage("Deploy") {
     sh "docker pull docker pull manonair/angularapp:latest && \
-        docker run -d --name=ast_0 -p 8000:80 manonair/angularapp:latest\""
+        docker run -d --name=ast_0 -p 8000:80 manonair/angularapp:latest\"
   }
 
   
