@@ -28,6 +28,7 @@ node {
 
     stage('Test image') {
        
+        npm test
         app.inside {
             echo "Tests passed"
         }
