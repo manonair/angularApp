@@ -1,4 +1,4 @@
-FROM node:12.12.0-alpine as build-step
+FROM node:12.12.0-alpine as node
 
 # maintainer email Config
 MAINTAINER My Name  "manonair20@gmail.com"
@@ -8,12 +8,16 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 COPY . .
+
 RUN npm run build 
 
 # Stage 2 - Prod set up
-FROM nginx:1.17.4-alpine as prod-stage
-COPY --from=build-step /app/dist/angularApp /usr/share/nginx/html
+FROM nginx:1.17.4-alpine
+COPY --from=node /app/dist/angularApp /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
 
 # health check Config
