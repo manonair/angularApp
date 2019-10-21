@@ -57,11 +57,12 @@ node {
           sh "docker stop angularapp && \
           docker rm angularapp"
     } catch(e) {
-           
+           echo e.toString()
     }
-    
+    echo "Clean up completed"
     sh "docker pull manonair/angularapp && \
         docker run -d --name=angularapp -p 8002:8002 manonair/angularapp"
+    echo "completed deployment "
   }
   
   
