@@ -6,9 +6,21 @@ MAINTAINER My Name  "manonair20@gmail.com"
 # stage 1 build step
 WORKDIR /app
 COPY package.json ./
-RUN npm install
+
+RUN npm config set unsafe-perm true && \
+npm install -g @angular/cli npm-snapshot && \
+npm cache clean --force
+
 COPY . .
-RUN npm run build 
+RUN npm install && \
+      npm rebuild node-sass && \
+      ng build
+ 
+
+#unit test
+FROM build-step as test
+RUN ng lint && \
+ng test --watch=false
 
 # Stage 2 - Prod set up
 FROM nginx:1.17.4-alpine as prod-stage
