@@ -1,5 +1,8 @@
 FROM node:12.12.0-alpine as build-step
 
+ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV CHROME_DRIVER=/usr/bin/chromedriver
+
 # maintainer email Config
 MAINTAINER My Name  "manonair20@gmail.com"
 
