@@ -61,7 +61,7 @@ node {
     }
     echo "Clean up completed"
     sh "docker pull manonair/angularapp && \
-        docker run -d --name=angularapp -p 80:80 manonair/angularapp"
+        docker run -d --name=angularapp -p 8080:80 manonair/angularapp"
     echo "completed deployment "
   }
   
