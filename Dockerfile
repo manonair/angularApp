@@ -13,7 +13,7 @@ RUN npm run build
 # Stage 2 - Prod set up
 FROM nginx:1.17.4-alpine as prod-stage
 COPY --from=build-step /app/dist/angularApp /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 8002
 CMD ["nginx", "-g", "daemon off;"]
 
 # health check Config
